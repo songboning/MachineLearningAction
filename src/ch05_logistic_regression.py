@@ -16,6 +16,7 @@ def 加载数据集(文件路径):
     文件 = open(文件路径)
     for 行 in 文件.readlines():
         特征.append([float(元素) for 元素 in 行.strip().split('\t')[:-1]])
+        #原作中这里多加了个1，理解为在随机梯度下降中作为L1正则惩罚项
         标签.append(float(行.strip().split('\t')[-1]))
     文件.close()
     return mat(特征), mat(标签).T
