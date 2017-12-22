@@ -18,6 +18,7 @@ def 加载数据集(文件路径):
         标签.append(float(行.strip().split('\t')[-1]))
     文件.close()
     return mat(特征), mat(标签).T
+#数据固定第一维恒为1可用于统一计算y=wx+b中的常数偏移b
 
 def 绘图(特征矩阵, 标签矩阵, 有序特征, 有序预测):
     from matplotlib import pyplot as plt
