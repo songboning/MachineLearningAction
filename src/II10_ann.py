@@ -9,7 +9,6 @@ Created on Tue Jan  9 14:13:21 2018
 import os
 import tensorflow as tf
 import numpy as np
-from datetime import datetime
 from tensorflow.examples.tutorials.mnist import input_data
 
 def reset_env(seed = 42):
@@ -18,7 +17,7 @@ def reset_env(seed = 42):
     np.random.seed(seed)
 #用来让某部分的随机化效果和参考书一致,每个部分都应当用这个函数先初始化
 
-mnist = input_data.read_data_sets('../data/II10_mnist')
+mnist = input_data.read_data_sets('../data/mnist')
 
 """ *** 朴素神经网络 *** """
 def 神经元层(X, 神经元个数, name, 激活函数=None):
@@ -32,6 +31,7 @@ def 神经元层(X, 神经元个数, name, 激活函数=None):
         if 激活函数:
             return 激活函数(Z)
         return Z
+#tensorflow神经元层的朴素实现
 
 输入数 = 28 * 28
 输出数 = 10
@@ -65,10 +65,10 @@ with tf.Session() as session:
         训练集准确率 = 准确率.eval(feed_dict={X: X_batch, y: y_batch})
         验证集准确率 = 准确率.eval(feed_dict={X: mnist.validation.images, y: mnist.validation.labels})
         print(epoch, '训练集准确率:', 训练集准确率, '验证集准确率:', 验证集准确率)
-    save_path = 存储器.save(session, '../data/II10_mnist/model/mnist_model.ckpt')
+    save_path = 存储器.save(session, '../data/II10/model/mnist_model.ckpt')
 
 with tf.Session() as session:
-    存储器.restore(session, '../data/II10_mnist/model/mnist_model.ckpt')
+    存储器.restore(session, '../data/II10/model/mnist_model.ckpt')
     X_new = mnist.test.images[:20]
     Z = 输出层.eval(feed_dict={X: X_new})
     y_pred = np.argmax(Z, axis=1)
@@ -109,10 +109,10 @@ epochs_without_progress = 0
 max_epochs_without_progress = 50
 
 存储器 = tf.train.Saver()
-日志记录器 = tf.summary.FileWriter('../data/II10_mnist/log/exerise/', tf.get_default_graph())
-checkpoint_path = "../data/II10_mnist/model/exerise_model.ckpt"
+日志记录器 = tf.summary.FileWriter('../data/II10/log/exerise/', tf.get_default_graph())
+checkpoint_path = "../data/II10/model/exerise_model.ckpt"
 checkpoint_epoch_path = checkpoint_path + ".epoch"
-final_model_path = "../data/II10_mnist/model/final_model.ckpt"
+final_model_path = "../data/II10/model/final_model.ckpt"
 
 with tf.Session() as session:
     if os.path.isfile(checkpoint_epoch_path):

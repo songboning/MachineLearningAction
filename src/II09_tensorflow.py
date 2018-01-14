@@ -210,7 +210,7 @@ y_pred = tf.matmul(X, 回归系数, name='predictions')
 初始化节点 = tf.global_variables_initializer()
 #以上代码和使用梯度下降优化器的离线算法构造一致
 
-存储器 = tf.train.Saver()#应该在所有节点之后定义存储器
+存储器 = tf.train.Saver()#应该在所有节点之后定义存储器,存储器存储的目录要事先存在
 with tf.Session() as session:
     session.run(初始化节点)
     for epoch in range(训练次数):

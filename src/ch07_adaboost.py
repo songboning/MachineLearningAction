@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov 27 20:29:51 2017
-集成提升方法模版
+自适应提升方法模版
 @author: songboning
 """
 
