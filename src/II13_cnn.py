@@ -34,17 +34,17 @@ def cnn():
     width = 28
     channels = 1
     n_inputs = height * width
-    conv1_fmaps = 32#卷积层卷积核种类(数目)
+    conv1_fmaps = 12#卷积层卷积核种类(数目)
     conv1_ksize = 3#卷积核大小
     conv1_stride = 1#卷积核滑动步长
     conv1_pad = "SAME"#用0填补卷积核滑动中不能整除的部分
-    conv2_fmaps = 64
+    conv2_fmaps = 16
     conv2_ksize = 3
     conv2_stride = 1
     conv2_pad = "SAME"
     conv2_dropout_rate = 0.25
     pool3_fmaps = conv2_fmaps
-    n_fc4 = 128
+    n_fc4 = 32
     fc4_dropout_rate = 0.5
     n_outputs = 10
     
@@ -110,4 +110,4 @@ def cnn():
             restore_model_params(best_model_params)
         acc_test = accuracy.eval(feed_dict={X: mnist.test.images, y: mnist.test.labels})
         print ('最终测试正确率: %.4f%%' %(acc_test * 100))
-#CNN在MNIST的样例,可能会爆4G内存
+#CNN在MNIST的样例,笔记本CPU+4G运行困难
